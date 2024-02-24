@@ -1,0 +1,93 @@
+Part#1
+docker build --tag python-django .
+docker run --publish 8000:8000 python-django
+
+Part#2
+docker-compose build
+docker-compose run --rm app django-admin startproject core.
+docker-compose up
+
+Part#3
+docker-compose build
+docker-compose run --rm app django-admin startproject core .
+docker-compose up
+docker exec -it django_container /bin/bash
+
+Part#4
+docker-compose run django_app sh -c "django-admin startapp newapp ."
+docker exec -it django_app sh
+
+#Run Celery Task
+    python manage.py shell
+    from newapp.tasks import add
+    add.delay(2, 2)
+
+Info:
+PYTHONUNBUFFERED:
+Setting the non-empty value of PYTHONUNBUFFERED means
+that the python output is transmitted directly to the
+terminal without being buffered and that allows displaying
+the application’s output in real-time.
+
+Part#5
+npx create-react-app my-app
+docker build --tag react .
+docker run react
+docker run --publish 3000:3000 react
+docker-compose build .
+docker-compose run app
+
+Part#6
+\\wsl$\docker-desktop-data\version-pack-data\community\docker\volumes\
+====================
+For Django
+====================
+py manage.py makemigrations --dry-run --verbosity 3
+py manage.py runserver
+py manage.py createsuperuser
+pip install coverage
+coverage run --omit='*/venv/*' manage.py test
+coverage html
+pip install djangorestframework
+
+===================
+For React
+===================
+npx create-react-app blogapi .
+cd blogapi
+npm start
+npm install react-router-dom
+npm install @material-ui/core
+pip install django-cors-headers
+
+Info:
+Strict Mode
+StrictMode is a tool for highlighting potential problems in an application. Like Fragment , StrictMode does not render. React StrictMode is a feature added in version 16.3 and aimed to help us in finding potential problems in an application.
+
+Part#7
+Commands Used
+################
+# Install celery
+pip install celery
+# Install RabbitMQ (Ubuntu Linux 20.04LTS)
+sudo apt-get install rabbitmq-server
+# Run Celery
+celery -A NAMEOFINSTANCE worker --loglevel=info
+we used
+celery -A proj worker --loglevel=info
+(If on Windows) celery -A proj worker -l info --pool=solo
+#Run Task
+py manage.py shell
+from app1.tasks import add
+add.delay(2,2)
+
+docker run -d --hostname my-rabbit --name some-rabbit -p 5672:5672 -p 8080:15672 rabbitmq:3-management
+
+Part#8
+docker-compose up
+
+docker ps
+docker inspect xyz
+
+pip install psycopg2
+pip freeze > requirements.txt
